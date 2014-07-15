@@ -24,6 +24,14 @@ namespace R2.Helper.Linq
             return list.Skip(numOnePage * (pageIndex - 1)).Take(numOnePage).Select(x => x);
         }
 
+        /// <summary>
+        /// 通用动态表达式树生成方法
+        /// </summary>
+        /// <typeparam name="T">相关实体</typeparam>
+        /// <typeparam name="U">检索关键字类型</typeparam>
+        /// <param name="key"></param>
+        /// <param name="selector"></param>
+        /// <returns></returns>
         public static Expression<Func<T, Boolean>> GetExpressionForSingle<T, U>(U key,
             Expression<Func<T, Boolean>> selector) where U:class
         {

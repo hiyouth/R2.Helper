@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace R2.Helper.GIS
@@ -65,7 +66,7 @@ namespace R2.Helper.GIS
         }
 
         /// <summary>
-        /// 将ddmmss 形式的经纬度转换到以度为单位的表达形式 江西经纬度格式
+        /// 将ddmmss 形式的经纬度转换到以度为单位的double型数值
         /// 如121-25-18 代表121d 25m 18s
         /// </summary>
         /// <param name="d_m_s"></param>
@@ -141,6 +142,57 @@ namespace R2.Helper.GIS
             double var2 = Math.Pow((y1 - y2), 2);
             return Math.Sqrt(var1 + var2);
         }
+
+        /// <summary>
+        /// 得到一个委托，表示判断哪些点在矩形内
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y1"></param>
+        /// <param name="y2"></param>
+        /// <returns></returns>
+        public static Func<double,double,Boolean> GetExpressionLonLatInRect(double x1, double x2, double y1, double y2)
+        {
+            return (lon,lat)=>    lon > x1 &&
+                                      lon< x2 &&
+                                      lat > y1 &&
+                                      lat < y2;
+        }
+
+        /// <summary>
+        /// 判断点是否在矩形内
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y1"></param>
+        /// <param name="y2"></param>
+        /// <param name="lon"></param>
+        /// <param name="lat"></param>
+        /// <returns></returns>
+        public static Boolean GetLonLatIsInRect(double x1, double x2, double y1, double y2,double lon,double lat)
+        {
+            bool isInRect =lon >= x1 &&
+                                      lon <= x2 &&
+                                      lat >= y1 &&
+                                      lat <= y2;
+            return isInRect;
+        }
+
+        /// <summary>
+        /// 判断点是否在圆内
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="radious"></param>
+        /// <param name="lon"></param>
+        /// <param name="lat"></param>
+        /// <returns></returns>
+        public static Boolean GetLonLatIsInCircle(double x,double y,double radius,double lon,double lat)
+        {
+            bool isInCircle = LonLatHelper.DistanceBetTwoPoints(x, y, lon, lat) <= radius;
+            return isInCircle;
+        }
+
     }
 }
 
