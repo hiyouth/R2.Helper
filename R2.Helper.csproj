@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>R2.Helper</RootNamespace>
     <AssemblyName>R2.Helper</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\R2.Helper.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -39,6 +42,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +55,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EMail\EMail.cs" />
+    <Compile Include="ExpressionSerialization\DLinqSerializer.cs" />
+    <Compile Include="ExpressionSerialization\Evaluator.cs" />
+    <Compile Include="ExpressionSerialization\ExpressionSerializer %28GenerateXmlFromExpressionCore%29.cs" />
+    <Compile Include="ExpressionSerialization\ExpressionSerializer%28Deserialize%29.cs" />
+    <Compile Include="ExpressionSerialization\ExpressionSerializer%28Serialize%29.cs" />
+    <Compile Include="ExpressionSerialization\IQueryService.cs" />
+    <Compile Include="ExpressionSerialization\KnownTypeExpressionXmlConverter.cs" />
+    <Compile Include="ExpressionSerialization\LinqHelper.cs" />
+    <Compile Include="ExpressionSerialization\Query.cs" />
+    <Compile Include="ExpressionSerialization\QueryCreator.cs" />
+    <Compile Include="ExpressionSerialization\QueryExpressionXmlConverter.cs" />
+    <Compile Include="ExpressionSerialization\QueryProvider.cs" />
+    <Compile Include="ExpressionSerialization\RemoteProvider.cs" />
+    <Compile Include="ExpressionSerialization\TypeResolver.cs" />
+    <Compile Include="ExpressionSerialization\WebHttpClient.cs" />
     <Compile Include="Extentions\DistinctExtensions.cs" />
     <Compile Include="Time\DateTimeHelper.cs" />
     <Compile Include="GIS\CoordinateConverter.cs" />
