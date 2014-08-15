@@ -31,7 +31,14 @@ namespace ExpressionSerialization
 		{							
 			if (x.Name.LocalName == typeof(ConstantExpression).Name)
 			{
-				Type serializedType = resolver.GetType(x.Element("Type").Value);
+                String typeName = x.Element("Type").Value;
+                if (String.IsNullOrEmpty(typeName))
+                {
+                    //added by leilei,for EnumType
+                    typeName = ((XElement)(((XContainer)(x.Element("Type"))).FirstNode)).FirstAttribute.Value;
+                   // typeName = ((XElement)(((XElement)(x.Element("Type").NextNode)).FirstNode)).FirstAttribute.Value;
+                }
+				Type serializedType = resolver.GetType(typeName);
 				if (resolver.HasMappedKnownType(serializedType))
 				{
 					string xml = x.Element("Value").Value;					
